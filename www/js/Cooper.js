@@ -6,10 +6,11 @@ CooperTest.prototype.testResults = function (obj) {
   var age = obj.age;
   var distance = obj.distance;
 
-  if(obj.gender === 'male'){
-    maleResults(obj);
-  }else {
-    femaleResults(obj);
+  switch (obj.gender.toLowerCase()){
+    case 'male': maleResults(obj);
+    break;
+    case 'female': femaleResults(obj);
+    break;
   }
 };
 
@@ -33,7 +34,7 @@ function getRanges(obj) {
 
 function maleResults (obj) {
   var ranges = getRanges(obj);
-  var distance = obj.distance;
+  var distance = parseInt(obj.distance);
   var mDistRangeOne = {one: distance >= 2700,
                       two: distance.between(2400, 2699),
                       three: distance.between(2200, 2399),
