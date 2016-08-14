@@ -193,7 +193,7 @@ function maleResults (obj) {
 
 function femaleResults (obj) {
   var ranges = getRanges(obj);
-  var distance = obj.distance;
+  var distance = parseInt(obj.distance);
   var fDistRangeOne = {one: distance >= 2000,
                       two: distance.between(1900, 200),
                       three: distance.between(1600, 1899),
