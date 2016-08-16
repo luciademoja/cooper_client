@@ -28,13 +28,17 @@ angular.module('starter.controllers', [])
   });
 
   $scope.doLogin = function () {
+    $ionicLoading.show({
+      template: 'Logging in...'
+    });
     $auth.submitLogin($scope.loginData)
       .then(function (resp) {
         // handle success response
+        $ionicLoading.hide();
         $scope.closeLogin();
       })
       .catch(function (error) {
-        // handle error response
+        $ionicLoading.hide();
         $scope.errorMessage = error;
       });
   };
