@@ -14,7 +14,8 @@
               required></select>
             </label>
 
-            <div class="item item-divider">Age
+            <div class="item item-divider">
+              Age
               <output name="agevalue" for="age"></output>
             </div>
             <div class="item range range-positive">
@@ -29,7 +30,8 @@
               required>{{ageValues.min}}/{{ageValues.max}} yrs
             </div>
 
-            <div class="item item-divider">Distance
+            <div class="item item-divider">
+              Distance
               <output name="distvalue" for="distance"></output>
             </div>
             <div class="item range range-positive">
@@ -43,27 +45,32 @@
               oninput="distvalue.value = distance.value"
               required>{{distanceValues.min}} - {{distanceValues.max}} m
             </div>
-
             <button
             class="button button-full button-calm"
             ng-click="calculateCooper()"
-            ng-disabled="testdata.$invalid">Get results</button>
+            ng-disabled="testdata.$invalid">
+            Get results
+            </button>
           </form>
         </div>
 
-
-        <div class="card" ng-if="person">
-          <div class="item item-divider">
-            Cooper Test results
+        <div ng-if="person">
+          <div class="card">
+            <div class="item item-divider">
+              Cooper Test results
+            </div>
+            <div class="item item-text-wrap">
+              <p>Person: Age {{person.age}}, Gender {{person.gender}}</p>
+              <p>Result: {{person.cooperMessage}}</p>
+            </div>
           </div>
-          <div class="item item-text-wrap">
-            <p>Person: Age {{person.age}}, Gender {{person.gender}}</p>
-            <p>Result: {{person.message}}</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
+          <button
+            ng-if="currentUser"
+            ng-controller="PerformanceCtrl"
+            class="button button-full button-calm"
+            ng-click="saveData(person)">
+            Save results
+          </button>
+         </div>
   </ion-content>
 </ion-view>
