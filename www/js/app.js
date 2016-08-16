@@ -40,6 +40,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ng-token-auth'])
      }
   })
 
+  .state('app.registration', {
+     url: '/registration',
+     views: {
+       'menuContent': {
+         templateUrl: 'templates/registration/registration.html',
+         controller: 'RegistrationCtrl'
+       }
+     }
+  })
+
+  .state('app.login', {
+     url: '/login',
+     views: {
+       'menuContent': {
+         templateUrl: 'templates/login/login.html',
+         controller: 'AppCtrl'
+       }
+     }
+  })
+
   .state('app.test', {
    url: '/test',
    views: {

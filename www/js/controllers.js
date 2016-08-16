@@ -2,25 +2,18 @@ angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($rootScope,
                                $scope,
-                               $ionicModal,
                                $timeout,
                                $auth,
                                $ionicLoading) {
 
   $scope.loginData = {};
 
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
   $scope.closeLogin = function() {
-    $scope.modal.hide();
+    $scope.hide();
   };
 
   $scope.login = function() {
-    $scope.modal.show();
+    $scope.show();
   };
 
   $rootScope.$on('auth:login-success', function(ev, user) {
@@ -33,7 +26,6 @@ angular.module('starter.controllers', [])
     });
     $auth.submitLogin($scope.loginData)
       .then(function (resp) {
-        // handle success response
         $ionicLoading.hide();
         $scope.closeLogin();
       })
@@ -42,6 +34,32 @@ angular.module('starter.controllers', [])
         $scope.errorMessage = error;
       });
   };
+})
+
+.controller('RegistrationCtrl', function($scope, $auth, $ionicLoading) {
+
+  $scope.register = function() {
+    $scope.show();
+  };
+
+  $scope.registrationData = {};
+
+  $scope.clickRegistrationButton = function() {
+    $ionicLoading.show({
+     template: 'Please wait...'
+    });
+    $auth.submitRegistration($scope.registrationData)
+      .then(function(resp) {
+        $ionicLoading.hide();
+        $scope.register();
+        // console.log('Account registered successfully!');
+      })
+      .catch(function(error) {
+        $ionicLoading.hide();
+        $scope.errorMessage = error;
+      });
+  };
+
 })
 
 .controller('TestController', function($scope) {
