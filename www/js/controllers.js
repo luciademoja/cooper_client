@@ -18,12 +18,16 @@ angular.module('starter.controllers', [])
     $scope.modal.show();
   };
 
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
+  $scope.doLogin = function () {
+    $auth.submitLogin($scope.loginData)
+      .then(function (resp) {
+        // handle success response
+        $scope.closeLogin();
+      })
+      .catch(function (error) {
+        // handle error response
+        $scope.errorMessage = error;
+      });
   };
 })
 
