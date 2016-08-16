@@ -1,6 +1,11 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($rootScope,
+                               $scope,
+                               $ionicModal,
+                               $timeout,
+                               $auth,
+                               $ionicLoading) {
 
   $scope.loginData = {};
 
@@ -17,6 +22,10 @@ angular.module('starter.controllers', [])
   $scope.login = function() {
     $scope.modal.show();
   };
+
+  $rootScope.$on('auth:login-success', function(ev, user) {
+    $scope.currentUser = user;
+  });
 
   $scope.doLogin = function () {
     $auth.submitLogin($scope.loginData)
